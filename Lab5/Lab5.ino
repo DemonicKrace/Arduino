@@ -40,7 +40,7 @@ boolean data[16][NUM] = {
   {f, f, t, t, t, t, t}, // b
   {t, f, f, t, t, t, f}, // c
   {f, t, t, t, t, f, t}, // d
-  {t, t, f, t, t, t, t}, // e
+  {t, f, f, t, t, t, t}, // e
   {t, f, f, f, t, t, t}  // f 
 };
 
@@ -50,9 +50,7 @@ void setup(){
 
   for(int i = 0; i < NUM; i++){
     pinMode(pins[i], OUTPUT);    
-  } for(int i = 0; i < NUM; i++){
-    pinMode(pins[i], OUTPUT);    
-  } 
+  }  
 }
 void loop(){
   char key = keypad.getKey();
