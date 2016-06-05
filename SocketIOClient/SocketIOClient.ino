@@ -1,0 +1,57 @@
+/***
+  hello.ino: Hello World Socket.IO Client for Arduino/Bitlash
+  Copyright (C) 2013 Bill Roy
+  MIT license: see LICENSE file.
+  This sketch listens for a Bitlash command from a socket.io server and
+  executes the command, returning its output to the server over the websocket.
+  
+  For testing, you will find a companion socket.io server in the file 
+  index.js in the same directory.
+  Run the server ("node index.js"), then boot up the Arduino with this sketch on it.  
+  Commands you type on the server console will be executed on the Arduino, 
+  and the resulting Bitlash output will be displayed on the server console.
+  You will need to adjust the hostname and port below to match your network.
+  By default the server runs on port 3000.
+***/
+//#include "SocketIOClient.h"
+#include "Ethernet.h"
+#include "SPI.h"
+#include "bitlash.h"
+WebSocketClient client;
+
+byte mac[] = { 0x60, 0xF8, 0x1D, 0xAD, 0x4D, 0x2A }; //osx mac 60:f8:1d:ad:4d:2a
+char hostname[] = "192.168.240.174";
+int port = 3000;
+
+
+// websocket message handler: do something with command from server
+void ondata(SocketIOClient client, char *data) {
+  Serial.print(data);
+}
+
+void setup() {
+  Serial.begin(9600);
+
+  Ethernet.begin(mac);
+
+  client.setDataArrivedDelegate(ondata);
+  
+  if (!client.connect(hostname, port)) 
+    Serial.println(F("Not connected."));
+
+  if (client.connected())
+    client.send("Client here!");
+}
+
+#define HELLO_INTERVAL 3000UL
+unsigned long lasthello;
+
+void loop() {
+  client.monitor();
+
+  unsigned long now = millis();
+  if ((now - lasthello) >= HELLO_INTERVAL) {
+    lasthello = now;
+    if (client.connected()) client.send("Hello, world!\n");
+  }
+}
