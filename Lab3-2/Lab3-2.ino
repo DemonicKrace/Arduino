@@ -1,3 +1,4 @@
+//Lab03-類比輸入
 int analogPinA2 = A2; //可變電阻
 
 void setup() {

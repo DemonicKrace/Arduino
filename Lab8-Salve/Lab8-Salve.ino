@@ -1,3 +1,4 @@
+//Lab08-I2C通訊
 // slave_receiver.ino
 // Refer to the "master_sender" example for use with this
 #include <Wire.h>

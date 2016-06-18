@@ -1,3 +1,4 @@
+//Lab03-類比輸入
 int analogPinA3 = A3; //光敏電阻
 
 void setup() {

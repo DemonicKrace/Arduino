@@ -1,3 +1,4 @@
+//Lab09-Ultrasonic
 // HCSR04Ultrasonic/examples/UltrasonicDemo/UltrasonicDemo.pde
 #include <Ultrasonic.h>
 
@@ -55,7 +56,7 @@ void loop()
 
   lcd.scrollDisplayLeft();
   delay(1000);
-
+  showSonic();
 
 }
 
@@ -67,19 +68,31 @@ void buttonStateChanged() {
   Serial.print("buttonState = ");
   Serial.println(buttonState);
 
+ // showSonic();
+//  delay(500);
+}
 
+void showSonic(){
   float cmMsec, inMsec;
   long microsec = ultrasonic.timing();
 
   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM); // 計算距離，單位: 公分
   inMsec = ultrasonic.convert(microsec, Ultrasonic::IN); // 計算距離，單位: 英吋
 
+  lcd.clear();
   lcd.print("MS:");
   lcd.print(microsec);
   lcd.print(",CM:");
   lcd.print(cmMsec);
   lcd.print(",IN:");
-  lcd.println(inMsec);
+  lcd.print(inMsec);
+
+  Serial.print("MS:");
+  Serial.print(microsec);
+  Serial.print(",CM:");
+  Serial.print(cmMsec);
+  Serial.print(",IN:");
+  Serial.println(inMsec);
   
   lcd.setCursor(0, 1);
 }

@@ -1,3 +1,4 @@
+//Lab02-走馬燈
 byte startPin = 6;
 byte endPin = 13;
 int delayTime = 200;

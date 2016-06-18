@@ -1,3 +1,4 @@
+//Lab 11 - 計時計數器
 //MSTimer2，show on LCD to implement a clock
 #include <MsTimer2.h>
 // 引用 LiquidCrystal Library
@@ -39,14 +40,13 @@ void counter( ) {
     lcd.print(m);
     lcd.print(":");
     lcd.print(s);
-    lcd.println();
-    
+
   }else{
     digitalWrite(13, HIGH);
 
     Serial.println("time is up!");
     
-    lcd.println("time is up!");
+    lcd.print("time is up!");
   }
   lcd.setCursor(0, 1);
 }
@@ -69,6 +69,7 @@ void loop() {
 //  // 列印 Arduino 重開之後經過的秒數
 //  lcd.print(millis()/1000);
   if(Serial.available()){
+    digitalWrite(13, LOW);
     h = Serial.parseInt();
     m = Serial.parseInt();
     s = Serial.parseInt();

@@ -1,3 +1,4 @@
+//Lab04-四合一七段顯示器
 // 定義腳位
 #define PIN_0 1
 #define PIN_g 3

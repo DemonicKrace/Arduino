@@ -1,3 +1,4 @@
+//Lab03-類比輸入
 int analogPin5v = A0;   //5v
 int analogPin3_3v = A1; //3.3v
 

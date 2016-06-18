@@ -1,4 +1,5 @@
-  /* Lab7 - 在 2x20 LCD 上顯示 "Hello World" 訊息 
+//Lab07-LCD 顯示器
+/* Lab7 - 在 2x20 LCD 上顯示 "Hello World" 訊息 
   The circuit:
  * LCD RS pin to digital pin 12
  * LCD Enable pin to digital pin 11
